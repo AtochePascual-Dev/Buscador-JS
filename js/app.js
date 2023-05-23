@@ -39,9 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // * Carga la lista de autos
 const mostrarAutos = (autos) => {
 
-  // Limpiamos la list previa
+  // Limpiamos la lista de HTML previo
   limpiarHTML();
 
+  (autos.length > 0)
+    ? listarAutos(autos)
+    : mostrarMensaje();
+
+};
+
+
+
+// * Lista los autos y lo muestra en el html
+const listarAutos = (autos) => {
   autos.forEach(auto => {
     const { marca, modelo, year, precio, puertas, color, transmision } = auto;
 
@@ -54,7 +64,6 @@ const mostrarAutos = (autos) => {
     resultado.appendChild(autoHTML);
   });
 };
-
 
 
 // * Limpia la lista de autos
@@ -162,3 +171,12 @@ const filtrarColor = (auto) =>
   (datosBusqueda.color)
     ? auto.color === datosBusqueda.color
     : auto;
+
+
+// * Muestra un mensje
+const mostrarMensaje = () => {
+  const mensaje = document.createElement('P');
+  mensaje.textContent = "No se encontraron resultados";
+  mensaje.classList.add('alerta', 'error');
+  resultado.appendChild(mensaje);
+};
