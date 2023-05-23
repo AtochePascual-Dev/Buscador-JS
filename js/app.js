@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // * Carga la lista de autos
 const mostrarAutos = (autos) => {
 
+  // Limpiamos la list previa
+  limpiarHTML();
+
   autos.forEach(auto => {
     const { marca, modelo, year, precio, puertas, color, transmision } = auto;
 
@@ -52,6 +55,14 @@ const mostrarAutos = (autos) => {
   });
 };
 
+
+
+// * Limpia la lista de autos
+const limpiarHTML = () => {
+  while (resultado.firstChild) {
+    resultado.firstChild.remove();
+  };
+};
 
 
 // * Llena el select de años
@@ -77,4 +88,25 @@ const llenarObjetoBusqueda = (event) => {
 
   datosBusqueda[tipo] = valor;
 
+  filtrarAutos();
+};
+
+
+
+// * Filtrar autos
+const filtrarAutos = () => {
+  const autosFiltrados =
+    autos.filter(filtrarMarca);
+
+  mostrarAutos(autosFiltrados);
+};
+
+
+
+// * Filtrar por marca
+const filtrarMarca = (auto) => {
+  if (datosBusqueda.marca) {
+    return auto.marca === datosBusqueda.marca;
+  };
+  return auto;
 };
