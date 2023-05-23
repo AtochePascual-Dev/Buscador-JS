@@ -98,22 +98,30 @@ const filtrarAutos = () => {
   const autosFiltrados =
     autos.filter(filtrarMarca)
       .filter(filtrarYear)
+      .filter(filtrarMinimo)
 
   mostrarAutos(autosFiltrados);
 };
 
 
 
-// * Filtrar por marca
+// * Filtra por marca
 const filtrarMarca = (auto) =>
   (datosBusqueda.marca)
     ? auto.marca === datosBusqueda.marca
-    : auto
+    : auto;
 
 
 
-// * Filtrar por año
+// * Filtra por año
 const filtrarYear = (auto) =>
   (datosBusqueda.year)
     ? auto.year === Number(datosBusqueda.year)
+    : auto;
+
+
+// * Filtra por precio minimo
+const filtrarMinimo = (auto) =>
+  (datosBusqueda.minimo)
+    ? auto.precio <= Number(datosBusqueda.minimo)
     : auto
