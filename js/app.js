@@ -99,6 +99,7 @@ const filtrarAutos = () => {
     autos.filter(filtrarMarca)
       .filter(filtrarYear)
       .filter(filtrarMinimo)
+      .filter(filtrarMaximo)
 
   mostrarAutos(autosFiltrados);
 };
@@ -120,8 +121,17 @@ const filtrarYear = (auto) =>
     : auto;
 
 
+
 // * Filtra por precio minimo
 const filtrarMinimo = (auto) =>
   (datosBusqueda.minimo)
-    ? auto.precio <= Number(datosBusqueda.minimo)
-    : auto
+    ? auto.precio >= Number(datosBusqueda.minimo)
+    : auto;
+
+
+
+// * Filtra por precio minimo
+const filtrarMaximo = (auto) =>
+  (datosBusqueda.maximo)
+    ? auto.precio <= Number(datosBusqueda.maximo)
+    : auto;
