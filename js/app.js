@@ -96,7 +96,8 @@ const llenarObjetoBusqueda = (event) => {
 // * Filtrar autos
 const filtrarAutos = () => {
   const autosFiltrados =
-    autos.filter(filtrarMarca);
+    autos.filter(filtrarMarca)
+      .filter(filtrarYear)
 
   mostrarAutos(autosFiltrados);
 };
@@ -104,9 +105,15 @@ const filtrarAutos = () => {
 
 
 // * Filtrar por marca
-const filtrarMarca = (auto) => {
-  if (datosBusqueda.marca) {
-    return auto.marca === datosBusqueda.marca;
-  };
-  return auto;
-};
+const filtrarMarca = (auto) =>
+  (datosBusqueda.marca)
+    ? auto.marca === datosBusqueda.marca
+    : auto
+
+
+
+// * Filtrar por año
+const filtrarYear = (auto) =>
+  (datosBusqueda.year)
+    ? auto.year === Number(datosBusqueda.year)
+    : auto
