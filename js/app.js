@@ -101,6 +101,7 @@ const filtrarAutos = () => {
       .filter(filtrarMinimo)
       .filter(filtrarMaximo)
       .filter(filtrarPuertas)
+      .filter(filtrarTransmision)
 
   mostrarAutos(autosFiltrados);
 };
@@ -139,8 +140,16 @@ const filtrarMaximo = (auto) =>
 
 
 
-// * Filtra por precio maximo
+// * Filtra por precio puertas
 const filtrarPuertas = (auto) =>
   (datosBusqueda.puertas)
     ? auto.puertas === Number(datosBusqueda.puertas)
+    : auto;
+
+
+
+// * Filtra por precio transmision
+const filtrarTransmision = (auto) =>
+  (datosBusqueda.transmision)
+    ? auto.transmision === datosBusqueda.transmision
     : auto;
